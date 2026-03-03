@@ -8,16 +8,15 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Copy files to VM deployment folder
-        uses: appleboy/scp-action@v0.1.4
+      - name: SSH Deploy
+        uses: appleboy/ssh-action@v0.1.6
         with:
           host: ${{ secrets.VM_HOST }}
           username: ${{ secrets.VM_USER }}
           key: ${{ secrets.VM_SSH_KEY }}
-          source: "."
-          target: "/app/web/devopsverse"
+          port: 22
+          script: |
+            cd /app/web/devopsverse
+            git pull origin main
+      
