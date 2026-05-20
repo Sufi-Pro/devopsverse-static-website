@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: static-website
-          image: <DOCKERHUB_USER>/<REPO>:<IMAGE_TAG>
+          image: IMAGE_PLACEHOLDER
           ports:
             - containerPort: 80
 
