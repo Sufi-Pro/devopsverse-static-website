@@ -1,0 +1,19 @@
+name: Deploy Static Site
+
+on:
+ workflow_dispatch: 
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH Deploy
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.K3_SERVER_Host }}
+          username: ${{ secrets.K3_SERVER_User }}
+          key: ${{ secrets.K3_SERVER_SSHKEY }}
+          port: 22
+          script: |
+            echo "Welcome to the Server"
+      
